@@ -1,0 +1,9 @@
+server: irc.freenode.net
+port: 7000
+room: somechannel
+nick: noticebot
+ssl: 1
+message_without_join: 1
+no_colors: 0
+long_url: 0
+notice: 1
