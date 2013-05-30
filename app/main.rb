@@ -10,6 +10,10 @@ use Rack::Auth::Basic, "Protected Area" do |username, password|
 end
 
 get '/' do
+  "OH HAI"
+end
+
+post '/' do
    irc = IrcNotice.new
    irc.receive_push(params[:payload])
    200
