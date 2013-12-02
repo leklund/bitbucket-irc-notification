@@ -16,7 +16,7 @@ class IrcNotice
     #return unless branch_name_matches?(post_data["commits"].first["branch"])
 
     messages = []
-    messages << "#{irc_push_summary_message(post_data)}: #{fmt_url(post_data["canon_url"] << post_data["repository"]["absolute_url"])}"
+    messages << "#{irc_push_summary_message(post_data)}: #{fmt_url(post_data["canon_url"] << post_data["repository"]["absolute_url"] << post_data["commits"].first["node"])}"
     messages += post_data["commits"].first(3).map {
         |commit| self.irc_format_commit_message(commit, post_data)
     }
@@ -186,7 +186,7 @@ class IrcNotice
     message = []
     message << "\00301[#{fmt_repo post_data["repository"]["name"]}\00301] #{fmt_name post_data["user"]}"
     num = post_data["commits"].size
-    message << "pushed \002#{num}\017 new commit#{num != 1 ? 's' : ''} to #{fmt_branch post_data["commits"].first["branch"]}"
+    message << "pushed \002#{num}\017 new commit#{num != 1 ? 's' : ''} to #{fmt_branch post_data["commits"].last["branch"]}"
 
     message.join(' ')
   end
